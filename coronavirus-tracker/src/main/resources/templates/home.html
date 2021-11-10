@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+
+<html xmlns:th="https://www.thymeleaf.org">
+
+<head>
+
+    <title class="text-center">Coronavirus Tracker Application</title>
+    <meta http-equiv="Content-Type" content="text/html"; charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+</head>
+
+<body>
+
+<h1>Coronavirus Cases Tracker Application</h1>
+<p>This application lists the current number of reported coronavirus cases across the USA.</p>
+
+<div class="container">
+    <div class="row">
+
+        <div class="col">
+            <div class="card" style="width: 18rem;">
+                <h1 class="display-4" th:text="${totalReportedCases}"></h1>
+                <div class="card-body">
+                    <p class="card-text">Total reported cases as of today</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card" style="width: 18rem;">
+                <h1 class="display-4" th:text="${totalNewCases}"></h1>
+                <div class="card-body">
+                    <p class="card-text">Total new reported cases today</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="container">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">City</th>
+                <th scope="col">Total Cases</th>
+                <th scope="col">Change from previous day</th>
+            </tr>
+        </thead>
+        <tr th:each="locationStats: ${locationStats}">
+            <td th:text="${locationStats.city_state_country}"></td>
+            <td th:text="${locationStats.latestTotalCases}"></td>
+            <td th:text="${locationStats.changeInCases}"></td>
+        </tr>
+    </table>
+</div>
+
+</body>
+
+</html>
